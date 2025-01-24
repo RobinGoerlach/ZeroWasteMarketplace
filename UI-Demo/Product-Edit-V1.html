@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Edit Product</h2>
+
+        <form>
+          <!-- Product Name -->
+          <div class="mb-4">
+            <label for="product-name" class="block text-gray-600 mb-2"
+              >Product Name</label
+            >
+            <input
+              type="text"
+              id="product-name"
+              value="Sample Product Name"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- Product Description -->
+          <div class="mb-4">
+            <label for="product-description" class="block text-gray-600 mb-2"
+              >Product Description</label
+            >
+            <textarea
+              id="product-description"
+              class="textarea textarea-bordered w-full"
+            >
+Sample product description goes here.</textarea
+            >
+          </div>
+
+          <!-- Product Price -->
+          <div class="mb-4">
+            <label for="product-price" class="block text-gray-600 mb-2"
+              >Product Price ($)</label
+            >
+            <input
+              type="number"
+              id="product-price"
+              value="99.99"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- Product Category -->
+          <div class="mb-4">
+            <label for="product-category" class="block text-gray-600 mb-2"
+              >Product Category</label
+            >
+            <select id="product-category" class="select select-bordered w-full">
+              <option value="computer">Computer</option>
+              <option value="office" selected>Office Product</option>
+              <option value="electronics">Electronics</option>
+              <option value="accessories">Accessories</option>
+            </select>
+          </div>
+
+          <!-- Product Images -->
+          <div class="mb-4">
+            <label for="product-images" class="block text-gray-600 mb-2"
+              >Update Product Images</label
+            >
+            <input
+              type="file"
+              id="product-images"
+              multiple
+              accept="image/*"
+              class="file-input file-input-bordered w-full"
+            />
+            <small class="text-gray-500"
+              >Upload new images to replace existing ones if necessary.</small
+            >
+          </div>
+
+          <!-- Existing Images -->
+          <div class="mb-6">
+            <label class="block text-gray-600 mb-2">Existing Images</label>
+            <div class="flex space-x-4" id="existing-images">
+              <div class="relative group">
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt="Image 1"
+                  class="w-24 h-24 object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  class="absolute top-0 right-0 bg-red-500 text-white text-sm p-1 rounded-full hidden group-hover:block"
+                  onclick="deleteImage(this)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+              <div class="relative group">
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt="Image 2"
+                  class="w-24 h-24 object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  class="absolute top-0 right-0 bg-red-500 text-white text-sm p-1 rounded-full hidden group-hover:block"
+                  onclick="deleteImage(this)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+              <div class="relative group">
+                <img
+                  src="https://via.placeholder.com/100"
+                  alt="Image 3"
+                  class="w-24 h-24 object-cover rounded-lg"
+                />
+                <button
+                  type="button"
+                  class="absolute top-0 right-0 bg-red-500 text-white text-sm p-1 rounded-full hidden group-hover:block"
+                  onclick="deleteImage(this)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex space-x-4">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save mr-2"></i>Save Changes
+            </button>
+            <button type="button" class="btn btn-outline">
+              <i class="fas fa-trash-alt mr-2"></i>Delete Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function deleteImage(button) {
+        const imageContainer = button.parentElement;
+        imageContainer.remove();
+      }
+    </script>
+  </body>
+</html>

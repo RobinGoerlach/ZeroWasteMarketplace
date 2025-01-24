@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Category with Subcategories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+          Add Category with Subcategories
+        </h2>
+
+        <!-- Add New Category -->
+        <form id="add-category-form" class="space-y-4">
+          <!-- Category Name -->
+          <div>
+            <label for="category-name" class="block text-gray-600 mb-2"
+              >Category Name</label
+            >
+            <input
+              type="text"
+              id="category-name"
+              placeholder="Enter category name"
+              class="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          <!-- Category Description -->
+          <div>
+            <label for="category-description" class="block text-gray-600 mb-2"
+              >Category Description</label
+            >
+            <textarea
+              id="category-description"
+              placeholder="Enter category description"
+              class="textarea textarea-bordered w-full"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Subcategories -->
+          <div>
+            <label class="block text-gray-600 mb-2">Subcategories</label>
+            <div id="subcategory-list" class="space-y-2">
+              <!-- Subcategory Template -->
+              <div class="flex items-center space-x-4">
+                <input
+                  type="text"
+                  placeholder="Enter subcategory name"
+                  class="input input-bordered w-full"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline btn-error"
+                  onclick="removeSubcategory(this)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-outline btn-primary mt-2"
+              onclick="addSubcategory()"
+            >
+              <i class="fas fa-plus-circle mr-2"></i>Add Subcategory
+            </button>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary w-full">
+            <i class="fas fa-save mr-2"></i>Add Category
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const subcategoryList = document.getElementById("subcategory-list");
+
+      function addSubcategory() {
+        const subcategoryItem = document.createElement("div");
+        subcategoryItem.classList.add("flex", "items-center", "space-x-4");
+        subcategoryItem.innerHTML = `
+        <input type="text" placeholder="Enter subcategory name" class="input input-bordered w-full">
+        <button type="button" class="btn btn-outline btn-error" onclick="removeSubcategory(this)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      `;
+        subcategoryList.appendChild(subcategoryItem);
+      }
+
+      function removeSubcategory(button) {
+        const subcategoryItem = button.closest("div");
+        subcategoryItem.remove();
+      }
+
+      document
+        .getElementById("add-category-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const categoryName = document
+            .getElementById("category-name")
+            .value.trim();
+          const categoryDescription = document
+            .getElementById("category-description")
+            .value.trim();
+          const subcategories = Array.from(
+            subcategoryList.querySelectorAll("input")
+          )
+            .map((input) => input.value.trim())
+            .filter((name) => name);
+
+          if (!categoryName || !categoryDescription) {
+            alert("Category name and description are required.");
+            return;
+          }
+
+          console.log("Category Name:", categoryName);
+          console.log("Category Description:", categoryDescription);
+          console.log("Subcategories:", subcategories);
+
+          alert("Category and subcategories added successfully!");
+
+          // Reset form
+          document.getElementById("add-category-form").reset();
+          subcategoryList.innerHTML = "";
+        });
+    </script>
+  </body>
+</html>

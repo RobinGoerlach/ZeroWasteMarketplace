@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Add New Product</h2>
+
+        <form>
+          <!-- Product Name -->
+          <div class="mb-4">
+            <label for="product-name" class="block text-gray-600 mb-2"
+              >Product Name</label
+            >
+            <input
+              type="text"
+              id="product-name"
+              placeholder="Enter product name"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- Product Description -->
+          <div class="mb-4">
+            <label for="product-description" class="block text-gray-600 mb-2"
+              >Product Description</label
+            >
+            <textarea
+              id="product-description"
+              placeholder="Enter product description"
+              class="textarea textarea-bordered w-full"
+            ></textarea>
+          </div>
+
+          <!-- Product Price -->
+          <div class="mb-4">
+            <label for="product-price" class="block text-gray-600 mb-2"
+              >Product Price ($)</label
+            >
+            <input
+              type="number"
+              id="product-price"
+              placeholder="Enter product price"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- Product Category -->
+          <div class="mb-4">
+            <label for="product-category" class="block text-gray-600 mb-2"
+              >Product Category</label
+            >
+            <select id="product-category" class="select select-bordered w-full">
+              <option value="computer">Computer</option>
+              <option value="office">Office Product</option>
+              <option value="electronics">Electronics</option>
+              <option value="accessories">Accessories</option>
+            </select>
+          </div>
+
+          <!-- Product Image -->
+          <div class="mb-4">
+            <label for="product-image" class="block text-gray-600 mb-2"
+              >Upload Product Image</label
+            >
+            <input
+              type="file"
+              id="product-image"
+              class="file-input file-input-bordered w-full"
+            />
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex space-x-4">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-plus-circle mr-2"></i>Add Product
+            </button>
+            <button type="reset" class="btn btn-outline">
+              <i class="fas fa-undo mr-2"></i>Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

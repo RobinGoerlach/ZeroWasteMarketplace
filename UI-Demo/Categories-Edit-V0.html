@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Manage Categories</h2>
+
+        <!-- Add New Category -->
+        <form class="mb-6">
+          <div class="flex items-center space-x-4">
+            <input
+              type="text"
+              id="new-category"
+              placeholder="Enter new category"
+              class="input input-bordered w-full"
+            />
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-plus-circle mr-2"></i>Add Category
+            </button>
+          </div>
+        </form>
+
+        <!-- Existing Categories -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            Existing Categories
+          </h3>
+          <ul id="category-list" class="space-y-4">
+            <!-- Example Categories -->
+            <li
+              class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow"
+            >
+              <span class="text-gray-800">Computer</span>
+              <div class="flex items-center space-x-2">
+                <button
+                  class="btn btn-sm btn-outline btn-primary"
+                  onclick="editCategory(this)"
+                >
+                  <i class="fas fa-edit mr-2"></i>Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-outline btn-error"
+                  onclick="deleteCategory(this)"
+                >
+                  <i class="fas fa-trash-alt mr-2"></i>Delete
+                </button>
+              </div>
+            </li>
+            <li
+              class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow"
+            >
+              <span class="text-gray-800">Office Product</span>
+              <div class="flex items-center space-x-2">
+                <button
+                  class="btn btn-sm btn-outline btn-primary"
+                  onclick="editCategory(this)"
+                >
+                  <i class="fas fa-edit mr-2"></i>Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-outline btn-error"
+                  onclick="deleteCategory(this)"
+                >
+                  <i class="fas fa-trash-alt mr-2"></i>Delete
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function deleteCategory(button) {
+        const categoryItem = button.closest("li");
+        categoryItem.remove();
+      }
+
+      function editCategory(button) {
+        const categoryItem = button.closest("li");
+        const categoryName = categoryItem.querySelector("span").textContent;
+        const newCategoryName = prompt("Edit category name:", categoryName);
+        if (newCategoryName) {
+          categoryItem.querySelector("span").textContent = newCategoryName;
+        }
+      }
+    </script>
+  </body>
+</html>

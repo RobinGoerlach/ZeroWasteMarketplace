@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Manage Categories</h2>
+
+        <!-- Add New Category -->
+        <form class="mb-6" id="add-category-form">
+          <div class="space-y-4">
+            <input
+              type="text"
+              id="new-category-name"
+              placeholder="Enter new category name"
+              class="input input-bordered w-full"
+              required
+            />
+            <textarea
+              id="new-category-description"
+              placeholder="Enter category description"
+              class="textarea textarea-bordered w-full"
+              required
+            ></textarea>
+            <button type="submit" class="btn btn-primary w-full">
+              <i class="fas fa-plus-circle mr-2"></i>Add Category
+            </button>
+          </div>
+        </form>
+
+        <!-- Existing Categories -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            Existing Categories
+          </h3>
+          <div id="category-list" class="space-y-4 overflow-y-auto max-h-96">
+            <!-- Example Categories -->
+            <div class="flex flex-col bg-gray-50 p-4 rounded-lg shadow">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-800 font-bold">Computer</span>
+                <div class="flex items-center space-x-2">
+                  <button
+                    class="btn btn-sm btn-outline btn-primary"
+                    onclick="editCategory(this)"
+                  >
+                    <i class="fas fa-edit mr-2"></i>Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline btn-error"
+                    onclick="deleteCategory(this)"
+                  >
+                    <i class="fas fa-trash-alt mr-2"></i>Delete
+                  </button>
+                </div>
+              </div>
+              <p class="text-gray-600 mt-2">
+                Category for all computer-related products.
+              </p>
+            </div>
+            <div class="flex flex-col bg-gray-50 p-4 rounded-lg shadow">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-800 font-bold">Office Product</span>
+                <div class="flex items-center space-x-2">
+                  <button
+                    class="btn btn-sm btn-outline btn-primary"
+                    onclick="editCategory(this)"
+                  >
+                    <i class="fas fa-edit mr-2"></i>Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline btn-error"
+                    onclick="deleteCategory(this)"
+                  >
+                    <i class="fas fa-trash-alt mr-2"></i>Delete
+                  </button>
+                </div>
+              </div>
+              <p class="text-gray-600 mt-2">
+                Category for office supplies and accessories.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const categoryList = document.getElementById("category-list");
+      const addCategoryForm = document.getElementById("add-category-form");
+
+      function deleteCategory(button) {
+        const categoryItem = button.closest("div.flex");
+        categoryItem.remove();
+      }
+
+      function editCategory(button) {
+        const categoryItem = button.closest("div.flex");
+        const categoryName = categoryItem.querySelector("span").textContent;
+        const categoryDescription = categoryItem.querySelector("p").textContent;
+
+        const newCategoryName = prompt("Edit category name:", categoryName);
+        const newCategoryDescription = prompt(
+          "Edit category description:",
+          categoryDescription
+        );
+
+        if (newCategoryName && newCategoryDescription) {
+          categoryItem.querySelector("span").textContent = newCategoryName;
+          categoryItem.querySelector("p").textContent = newCategoryDescription;
+        }
+      }
+
+      addCategoryForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById("new-category-name");
+        const descriptionInput = document.getElementById(
+          "new-category-description"
+        );
+
+        const categoryName = nameInput.value.trim();
+        const categoryDescription = descriptionInput.value.trim();
+
+        if (categoryName && categoryDescription) {
+          const newCategory = document.createElement("div");
+          newCategory.classList.add(
+            "flex",
+            "flex-col",
+            "bg-gray-50",
+            "p-4",
+            "rounded-lg",
+            "shadow"
+          );
+          newCategory.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="text-gray-800 font-bold">${categoryName}</span>
+            <div class="flex items-center space-x-2">
+              <button class="btn btn-sm btn-outline btn-primary" onclick="editCategory(this)">
+                <i class="fas fa-edit mr-2"></i>Edit
+              </button>
+              <button class="btn btn-sm btn-outline btn-error" onclick="deleteCategory(this)">
+                <i class="fas fa-trash-alt mr-2"></i>Delete
+              </button>
+            </div>
+          </div>
+          <p class="text-gray-600 mt-2">${categoryDescription}</p>
+        `;
+          categoryList.appendChild(newCategory);
+          nameInput.value = "";
+          descriptionInput.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

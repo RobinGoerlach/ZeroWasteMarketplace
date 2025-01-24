@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="w-full max-w-md">
+        <div class="tabs tabs-boxed flex justify-center mb-6">
+          <button class="tab tab-active" id="signin-tab">Sign In</button>
+          <button class="tab" id="signup-tab">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="signin-form" class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Sign In</h2>
+          <form>
+            <div class="mb-4">
+              <label for="email" class="block text-gray-600 mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="you@example.com"
+                class="input input-bordered w-full"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="block text-gray-600 mb-2"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                class="input input-bordered w-full"
+              />
+            </div>
+
+            <div class="mb-4 flex items-center justify-between">
+              <label class="flex items-center space-x-2">
+                <input type="checkbox" class="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="text-blue-500 text-sm">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full">
+              <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+            </button>
+          </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signup-form" class="hidden bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Sign Up</h2>
+          <form>
+            <div class="mb-4">
+              <label for="name" class="block text-gray-600 mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                class="input input-bordered w-full"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="email-signup" class="block text-gray-600 mb-2"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email-signup"
+                placeholder="you@example.com"
+                class="input input-bordered w-full"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="password-signup" class="block text-gray-600 mb-2"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password-signup"
+                placeholder="Create a password"
+                class="input input-bordered w-full"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="confirm-password" class="block text-gray-600 mb-2"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm your password"
+                class="input input-bordered w-full"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full">
+              <i class="fas fa-user-plus mr-2"></i>Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const signinTab = document.getElementById("signin-tab");
+      const signupTab = document.getElementById("signup-tab");
+      const signinForm = document.getElementById("signin-form");
+      const signupForm = document.getElementById("signup-form");
+
+      signinTab.addEventListener("click", () => {
+        signinForm.classList.remove("hidden");
+        signupForm.classList.add("hidden");
+        signinTab.classList.add("tab-active");
+        signupTab.classList.remove("tab-active");
+      });
+
+      signupTab.addEventListener("click", () => {
+        signupForm.classList.remove("hidden");
+        signinForm.classList.add("hidden");
+        signupTab.classList.add("tab-active");
+        signinTab.classList.remove("tab-active");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div
+      class="container mx-auto p-6 min-h-screen flex items-center justify-center"
+    >
+      <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+          Manage Categories and Subcategories
+        </h2>
+
+        <!-- Add New Category -->
+        <form id="add-category-form" class="mb-6 space-y-4">
+          <div>
+            <label for="category-name" class="block text-gray-600 mb-2"
+              >Category Name</label
+            >
+            <input
+              type="text"
+              id="category-name"
+              placeholder="Enter category name"
+              class="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="category-description" class="block text-gray-600 mb-2"
+              >Category Description</label
+            >
+            <textarea
+              id="category-description"
+              placeholder="Enter category description"
+              class="textarea textarea-bordered w-full"
+              required
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="block text-gray-600 mb-2">Subcategories</label>
+            <div id="subcategory-list" class="space-y-2">
+              <div class="flex items-center space-x-4">
+                <input
+                  type="text"
+                  placeholder="Enter subcategory name"
+                  class="input input-bordered w-full"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline btn-error"
+                  onclick="removeSubcategory(this)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-outline btn-primary mt-2"
+              onclick="addSubcategory()"
+            >
+              <i class="fas fa-plus-circle mr-2"></i>Add Subcategory
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full">
+            <i class="fas fa-save mr-2"></i>Add Category
+          </button>
+        </form>
+
+        <!-- Existing Categories -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            Existing Categories
+          </h3>
+          <div id="category-list" class="space-y-4">
+            <!-- Example Category -->
+            <div class="flex flex-col bg-gray-50 p-4 rounded-lg shadow">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-800 font-bold">Sample Category</span>
+                <button
+                  type="button"
+                  class="btn btn-outline btn-error"
+                  onclick="deleteCategory(this)"
+                >
+                  <i class="fas fa-trash-alt mr-2"></i>Delete Category
+                </button>
+              </div>
+              <div class="mt-2 space-y-2">
+                <!-- Example Subcategories -->
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Subcategory 1</span>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline btn-error"
+                    onclick="deleteSubcategory(this)"
+                  >
+                    <i class="fas fa-trash-alt mr-2"></i>Delete Subcategory
+                  </button>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-600">Subcategory 2</span>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline btn-error"
+                    onclick="deleteSubcategory(this)"
+                  >
+                    <i class="fas fa-trash-alt mr-2"></i>Delete Subcategory
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const categoryList = document.getElementById("category-list");
+      const subcategoryList = document.getElementById("subcategory-list");
+
+      function addSubcategory() {
+        const subcategoryItem = document.createElement("div");
+        subcategoryItem.classList.add("flex", "items-center", "space-x-4");
+        subcategoryItem.innerHTML = `
+        <input type="text" placeholder="Enter subcategory name" class="input input-bordered w-full">
+        <button type="button" class="btn btn-outline btn-error" onclick="removeSubcategory(this)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      `;
+        subcategoryList.appendChild(subcategoryItem);
+      }
+
+      function removeSubcategory(button) {
+        const subcategoryItem = button.closest("div");
+        subcategoryItem.remove();
+      }
+
+      function deleteCategory(button) {
+        const categoryItem = button.closest("div.flex-col");
+        if (confirm("Are you sure you want to delete this category?")) {
+          categoryItem.remove();
+        }
+      }
+
+      function deleteSubcategory(button) {
+        const subcategoryItem = button.closest("div");
+        if (confirm("Are you sure you want to delete this subcategory?")) {
+          subcategoryItem.remove();
+        }
+      }
+
+      document
+        .getElementById("add-category-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const categoryName = document
+            .getElementById("category-name")
+            .value.trim();
+          const categoryDescription = document
+            .getElementById("category-description")
+            .value.trim();
+          const subcategories = Array.from(
+            subcategoryList.querySelectorAll("input")
+          )
+            .map((input) => input.value.trim())
+            .filter((name) => name);
+
+          if (!categoryName || !categoryDescription) {
+            alert("Category name and description are required.");
+            return;
+          }
+
+          const newCategory = document.createElement("div");
+          newCategory.classList.add(
+            "flex",
+            "flex-col",
+            "bg-gray-50",
+            "p-4",
+            "rounded-lg",
+            "shadow"
+          );
+          newCategory.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="text-gray-800 font-bold">${categoryName}</span>
+          <button type="button" class="btn btn-outline btn-error" onclick="deleteCategory(this)">
+            <i class="fas fa-trash-alt mr-2"></i>Delete Category
+          </button>
+        </div>
+        <div class="mt-2 space-y-2">
+          ${subcategories
+            .map(
+              (sub) => `
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">${sub}</span>
+              <button type="button" class="btn btn-sm btn-outline btn-error" onclick="deleteSubcategory(this)">
+                <i class="fas fa-trash-alt mr-2"></i>Delete Subcategory
+              </button>
+            </div>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+          categoryList.appendChild(newCategory);
+
+          // Reset form
+          document.getElementById("add-category-form").reset();
+          subcategoryList.innerHTML = "";
+        });
+    </script>
+  </body>
+</html>

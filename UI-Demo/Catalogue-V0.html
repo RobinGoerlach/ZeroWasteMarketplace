@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Catalogue</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-6 min-h-screen">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8">Product Catalogue</h1>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example Product Card -->
+        <div class="bg-white shadow-lg rounded-lg p-4">
+          <img
+            src="https://via.placeholder.com/300"
+            alt="Product Image"
+            class="w-full h-48 object-cover rounded-md"
+          />
+          <div class="mt-4">
+            <h2 class="text-lg font-bold text-gray-800">Product Title</h2>
+            <p class="text-gray-600 mt-2">
+              A short description of the product goes here.
+            </p>
+            <p class="text-gray-800 font-bold mt-4">$99.99</p>
+            <div class="flex items-center space-x-4 mt-4">
+              <a href="#" class="btn btn-primary w-full">
+                <i class="fas fa-info-circle mr-2"></i>Details
+              </a>
+              <button class="btn btn-outline btn-success w-full">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Basket
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other products -->
+        <div class="bg-white shadow-lg rounded-lg p-4">
+          <img
+            src="https://via.placeholder.com/300"
+            alt="Product Image"
+            class="w-full h-48 object-cover rounded-md"
+          />
+          <div class="mt-4">
+            <h2 class="text-lg font-bold text-gray-800">Another Product</h2>
+            <p class="text-gray-600 mt-2">
+              This is another short product description.
+            </p>
+            <p class="text-gray-800 font-bold mt-4">$59.99</p>
+            <div class="flex items-center space-x-4 mt-4">
+              <a href="#" class="btn btn-primary w-full">
+                <i class="fas fa-info-circle mr-2"></i>Details
+              </a>
+              <button class="btn btn-outline btn-success w-full">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Basket
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

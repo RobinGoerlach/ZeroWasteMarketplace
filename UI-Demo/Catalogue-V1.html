@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Catalogue</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-6 min-h-screen">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8">Product Catalogue</h1>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example Product Card -->
+        <div class="card bg-white shadow-lg">
+          <figure>
+            <img
+              src="https://via.placeholder.com/300"
+              alt="Product Image"
+              class="w-full h-48 object-cover"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Product Title</h2>
+            <p>A short description of the product goes here.</p>
+            <p class="text-gray-800 font-bold">$99.99</p>
+            <div class="card-actions justify-end mt-4 flex space-x-2">
+              <a href="#" class="btn btn-primary">
+                <i class="fas fa-info-circle mr-2"></i>Details
+              </a>
+              <button class="btn btn-outline btn-success">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Basket
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other products -->
+        <div class="card bg-white shadow-lg">
+          <figure>
+            <img
+              src="https://via.placeholder.com/300"
+              alt="Product Image"
+              class="w-full h-48 object-cover"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Another Product</h2>
+            <p>This is another short product description.</p>
+            <p class="text-gray-800 font-bold">$59.99</p>
+            <div class="card-actions justify-end mt-4 flex space-x-2">
+              <a href="#" class="btn btn-primary">
+                <i class="fas fa-info-circle mr-2"></i>Details
+              </a>
+              <button class="btn btn-outline btn-success">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Basket
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.0.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-6 min-h-screen flex flex-col">
+      <div class="bg-white shadow-lg rounded-lg p-4 mb-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="User Avatar"
+              class="w-12 h-12 object-cover rounded-full"
+            />
+            <div>
+              <h2 class="text-lg font-bold text-gray-800">Chat with Seller</h2>
+              <p class="text-gray-600 text-sm">Product: Awesome Widget</p>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-error">
+            <i class="fas fa-times mr-2"></i>End Chat
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Box -->
+      <div
+        class="flex-grow bg-white shadow-lg rounded-lg p-6 overflow-y-auto space-y-4"
+        id="chat-box"
+      >
+        <!-- Messages -->
+        <div class="chat chat-start">
+          <div class="chat-image avatar">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="Seller Avatar"
+              class="rounded-full w-10 h-10"
+            />
+          </div>
+          <div class="chat-header">
+            Seller
+            <time class="text-xs opacity-50 ml-2">10:30 AM</time>
+          </div>
+          <div class="chat-bubble">
+            Hello! How can I help you with the Awesome Widget?
+          </div>
+        </div>
+
+        <div class="chat chat-end">
+          <div class="chat-image avatar">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="User Avatar"
+              class="rounded-full w-10 h-10"
+            />
+          </div>
+          <div class="chat-header">
+            You
+            <time class="text-xs opacity-50 ml-2">10:32 AM</time>
+          </div>
+          <div class="chat-bubble">
+            Hi! Can you tell me more about its features?
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Input -->
+      <form id="chat-form" class="flex items-center mt-4 space-x-4">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Type your message..."
+          class="input input-bordered flex-grow"
+          required
+        />
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-paper-plane mr-2"></i>Send
+        </button>
+      </form>
+    </div>
+
+    <script>
+      const chatBox = document.getElementById("chat-box");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        const userMessage = document.createElement("div");
+        userMessage.classList.add("chat", "chat-end");
+        userMessage.innerHTML = `
+        <div class="chat-image avatar">
+          <img src="https://via.placeholder.com/50" alt="User Avatar" class="rounded-full w-10 h-10">
+        </div>
+        <div class="chat-header">
+          You
+          <time class="text-xs opacity-50 ml-2">${new Date().toLocaleTimeString(
+            [],
+            { hour: "2-digit", minute: "2-digit" }
+          )}</time>
+        </div>
+        <div class="chat-bubble">${message}</div>
+      `;
+
+        chatBox.appendChild(userMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        chatInput.value = "";
+
+        // Simulate seller response
+        setTimeout(() => {
+          const sellerMessage = document.createElement("div");
+          sellerMessage.classList.add("chat", "chat-start");
+          sellerMessage.innerHTML = `
+          <div class="chat-image avatar">
+            <img src="https://via.placeholder.com/50" alt="Seller Avatar" class="rounded-full w-10 h-10">
+          </div>
+          <div class="chat-header">
+            Seller
+            <time class="text-xs opacity-50 ml-2">${new Date().toLocaleTimeString(
+              [],
+              { hour: "2-digit", minute: "2-digit" }
+            )}</time>
+          </div>
+          <div class="chat-bubble">Thank you for your question! It has many amazing features, including...</div>
+        `;
+          chatBox.appendChild(sellerMessage);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
